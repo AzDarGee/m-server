@@ -32,6 +32,8 @@ gem 'fog'
 gem 'rmagick', :require => 'RMagick'
 gem 'figaro'
 gem 'react-rails'
+gem 'factory_girl'
+gem 'rspec'
 
 
 ## For APIs ##
