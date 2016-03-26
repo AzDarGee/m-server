@@ -32,6 +32,7 @@ gem 'fog'
 gem 'rmagick', :require => 'RMagick'
 gem 'figaro'
 gem 'react-rails'
+gem 'capistrano'
 
 
 ## For APIs ##
