@@ -9,10 +9,16 @@ class DevSitesController < ApplicationController
       @dev_sites = DevSite.all.joins(:addresses).where.not( addresses: [] )
     end
 
+    @locale = params[:locale]
+
     respond_to do |format|
         format.html
         format.json
     end
+  end
+
+  def search
+    redirect_to map_path
   end
 
   def images
@@ -44,7 +50,7 @@ class DevSitesController < ApplicationController
           title: ds.title,
           address: address,
           :'marker-symbol' => ds.marker,
-          description: "<div class=\"marker-title\"><a href=\"/dev_sites/#{ds.id}\">#{ds.title}</a></div>Status: #{ds.status}"
+          description: "<div class=\"marker-title\"><a href=\"/#{params[:locale]}/dev_sites/#{ds.id}\">#{ds.title}</a></div>Status: #{ds.status}"
         }
       }
     end
@@ -53,6 +59,7 @@ class DevSitesController < ApplicationController
   end
 
   def show
+    @locale = params[:locale]
     if current_user
       @comments = @dev_site.comments.build
     end
@@ -130,7 +137,7 @@ class DevSitesController < ApplicationController
 
     def dev_site_params
       params.require(:dev_site).permit(:devID, :application_type, :title, :images_cache, :files_cache, :build_type,
-      :description, :ward_name, :ward_num, :image_url, :hearts, {images: []}, {files: []},
+      :description, :ward_councillor_email, :urban_planner_email, :ward_name, :ward_num, :image_url, :hearts, {images: []}, {files: []},
       addresses_attributes: [:id, :lat, :lon, :street, :_destroy],
       statuses_attributes: [:id, :status, :status_date, :_destroy] )
     end

@@ -1,32 +1,11 @@
 var map, geojsonData;
+var LOCALE;
 
 $(document).on('ready page:load', function(){
 
+  LOCALE = $('body').data('locale');
 
   if($("#main-map").length > 0) {
-
-    // function wheel(event) {
-    //     var delta = 0;
-    //     console.log(event);
-    //     if (event.wheelDelta) {(delta = event.wheelDelta / 60);}
-    //     else if (event.detail) {(delta = -event.detail / 3);}
-
-    //     handle(delta);
-    //     if (event.preventDefault) {(event.preventDefault());}
-    //     event.returnValue = false;
-    // }
-
-    // function handle(delta) {
-    //     var time = 500;
-    //     var distance = 300;
-
-    //     $('html, body').stop().animate({
-    //         scrollTop: $(window).scrollTop() - (distance * delta)
-    //     }, time );
-    // }
-
-    // if (window.addEventListener) {window.addEventListener('DOMMouseScroll', wheel, false);}
-    //   window.onmousewheel = document.onmousewheel = wheel;
 
     loadDevSiteData("/dev_sites");
     initMap();
@@ -146,11 +125,11 @@ $(document).on('ready page:load', function(){
 });
 
 function initMap(){
-  mapboxgl.accessToken = 'pk.eyJ1IjoibHVpc2FseWppIiwiYSI6ImNpZWh2NGFvczAwZjVzM20xdTc0OTZleTEifQ.Bm-MoyW0uby7pInuUzbVGw';
+  mapboxgl.accessToken = 'pk.eyJ1IjoibXR1Y2swNjMiLCJhIjoiY2ltNXA0OHZhMDFub3RzbTR5b3NmbTR4bCJ9.WDWrgehrJIsDpt1BX5IASQ';
 
   map = new mapboxgl.Map({
       container: 'main-map',
-      style: 'mapbox://styles/luisalyji/cioqcmbm30000bpnke827qw3u',
+      style: 'mapbox://styles/mtuck063/cim8gs43500449lm1hv082tp2',
       center: [-75.7, 45.42],
       zoom: 15
   });
@@ -159,22 +138,27 @@ function initMap(){
 };
 
 function loadEventData(url){
+  url = "/" + LOCALE + url
   $.getJSON(url, function(data){
     geojsonData = data.dev_sites;
+    data.LOCALE = LOCALE
     html = HandlebarsTemplates['maps/event_info'](data);
     $("#dev-site-profile").html(html);
   });
 }
 
 function loadDevSiteData(url){
+  url = "/" + LOCALE + url
   $.getJSON(url, function(data){
     geojsonData = data;
+    data.LOCALE = LOCALE
     html = HandlebarsTemplates['maps/dev_site_info'](data);
     $("#dev-site-profile").html(html);
   });
 }
 
 function loadGeoJsonData(url){
+  url = "/" + LOCALE + url
   $.getJSON(url, function(data){
 
     if(map.getSource("devSites")){

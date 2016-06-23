@@ -16,13 +16,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery.turbolinks
-//= require jquery.raty
 //= require react
 //= require react_ujs
 //= require_tree ./components
-//= require ratyrate
 //= require cocoon
 //= require moment
+//= require ajax.autocomplete
 //= require photoswipe
 //= require handlebars.runtime
 //= require_tree ./templates

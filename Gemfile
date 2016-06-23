@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.5.1'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -11,7 +11,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'firebase', '~> 0.2.6'
 gem 'bcrypt', '~> 3.1.11'
-gem 'ratyrate', '~> 1.2.2.alpha'
 gem 'unirest', '~> 1.1.2'
 gem 'rabl', '~> 0.12.0'
 gem 'pg', '~> 0.18.4'
@@ -37,8 +36,7 @@ gem 'rmagick', '~> 2.15.4', :require => 'RMagick'
 gem 'figaro', '~> 1.1.1'
 gem 'react-rails', '~> 1.6.2'
 gem 'acts_as_votable', '~> 0.10.0'
-
-
+gem 'ajax-autocomplete-rails', '~> 0.1.1'
 ## For APIs ##
 # gem 'compass-rails', github: "Compass/compass-rails", branch: "master"
 
@@ -50,22 +48,19 @@ gem 'simple_form', '~> 3.2.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-
   gem 'byebug', '~> 8.2'
   gem 'pry-byebug'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-
   gem 'web-console', '~> 3.0'
-
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~> 1.6.4'
+  gem 'brakeman', :require => false
 end
 
 group :test do
-
   # Add color for the test results
   gem 'minitest-reporters', '~> 1.1.8'
   gem 'mini_backtrace', '0.1.3'
